@@ -1,0 +1,136 @@
+/* --- Global Layout --- */
+body {
+    background-color: #f1f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-area {
+    padding: 40px;
+    display: flex;
+    justify-content: center; /* Centers the card horizontally */
+}
+
+/* --- Card Container --- */
+.course-list-card {
+    background: white;
+    width: 100%;
+    max-width: 1200px; /* Limits width on very large screens */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 40px;
+    min-height: 80vh; /* Ensures it takes up good vertical space */
+    position: relative; /* For positioning pagination at bottom if needed */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header Section --- */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.card-header h1 {
+    font-size: 28px;
+    color: #5d6d7e; /* Grayish blue title */
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Add Course Button */
+.btn-add {
+    background-color: #1a3a5a; /* Dark Blue */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #2c5282;
+}
+
+/* --- Table Styling --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+
+.course-table th {
+    text-align: left;
+    color: #718096; /* Light gray header text */
+    font-weight: 500;
+    font-size: 18px;
+    padding: 15px 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.course-table td {
+    padding: 20px 10px;
+    color: #5d6d7e;
+    font-size: 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Underlined ID Link */
+.id-link {
+    color: #5d6d7e;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.id-link:hover {
+    color: #1a3a5a;
+}
+
+/* --- Pagination --- */
+.pagination {
+    margin-top: auto; /* Pushes pagination to the bottom */
+    display: flex;
+    justify-content: flex-end; /* Aligns to right */
+    align-items: center;
+    gap: 10px;
+}
+
+.page-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #718096;
+    font-size: 16px;
+}
+
+.page-num.active {
+    background-color: #1a3a5a;
+    color: white;
+}
+
+.btn-next {
+    background-color: #1a3a5a;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background 0.3s;
+}
+
+.btn-next:hover {
+    background-color: #2c5282;
+}

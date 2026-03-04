@@ -1,0 +1,109 @@
+/* พื้นหลังพื้นที่เนื้อหา */
+.content-area {
+    background-color: #f1f4f9; /* สีฟ้าอ่อนพื้นหลัง */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+/* --- ส่วนของ Virtual Student Card --- */
+.card {
+    background: white;
+    width: fit-content;
+    min-width: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 2px solid #e0e6ed;
+}
+
+.card h3:first-child {
+    background-color: #1a3a5a; /* หัวข้อน้ำเงินเข้ม */
+    color: white;
+    margin: 0;
+    padding: 15px 25px;
+    font-size: 20px;
+}
+
+.card-content {
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    gap: 25px;
+}
+
+.card img {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.info h2 {
+    margin: 0;
+    color: #1a3a5a;
+    font-size: 22px;
+}
+
+.info h3 {
+    margin: 5px 0;
+    color: #4a5568;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* --- ส่วนของสถิติ (Leave taken / can be taken) --- */
+.number {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.number h2 {
+    color: #4a5568;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.stat-row label {
+    width: 120px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+/* แถบสีเทา (Progress Bar) */
+.progress-bar {
+    flex: 1;
+    height: 10px;
+    background-color: #edf2f7;
+    border-radius: 5px;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #718096; /* สีเทาเข้มตามแบบ */
+    border-radius: 5px;
+}
+
+.times {
+    width: 60px;
+    text-align: right;
+    color: #718096;
+    font-size: 14px;
+}

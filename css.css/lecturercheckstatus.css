@@ -1,0 +1,96 @@
+    .status-card {
+    background: white;
+    padding: 50px;       /* ปรับ Padding ให้พอดี */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    
+    /* แก้ความกว้างตรงนี้ครับ */
+    width: 100%;         
+    max-width: 850px;    /* ลดจาก 1400px เหลือ 850px เพื่อให้เนื้อหาเกาะกลุ่มกันสวยงาม */
+    
+    margin: 0 auto;      /* จัดกึ่งกลาง */
+}
+/* --- แก้ไข .action-bar ให้ปุ่มชิดซ้ายตรงกับขอบการ์ด --- */
+.action-bar {
+    width: 100%;           /* 1. สั่งให้กล่องกว้างเต็มพื้นที่ก่อน */
+    max-width: 850px;      /* 2. จำกัดความกว้างให้เท่ากับกล่อง .status-card ด้านบน (สำคัญต้องเลขเดียวกัน) */
+    margin: 30px auto 0;   /* 3. จัดกล่องให้อยู่กึ่งกลางหน้าจอ (บนล่าง 30px, ซ้ายขวา auto) */
+    text-align: left;      /* 4. สั่งให้ปุ่มข้างในชิดซ้าย */
+    padding: 0;            /* ลบ Padding ที่อาจติดมา */
+}
+        .page-title {
+            text-align: center;
+            color: #1a3a5a;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        .student-info {
+            margin-bottom: 30px;
+        }
+
+        .student-info h2 {
+            color: #5d6d7e; /* สีเทาอมน้ำเงิน */
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .student-info p {
+            color: #718096;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .divider {
+            border-bottom: 1px solid #cbd5e0;
+            margin: 30px 0;
+        }
+
+        /* จัด Layout แบบ Grid (ซ้าย-ขวา) */
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .label {
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 20px; /* หัวข้อตัวใหญ่ */
+        }
+
+        .value {
+            color: #718096; /* สีเทาอ่อนลง */
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .value.status-pending {
+            color: #F6AD55; /* สีส้มสำหรับ Pending */
+            font-weight: bold;
+        }
+
+        .download-link {
+            color: #718096;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background-color: #1a3a5a;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: #2c5282;
+        }

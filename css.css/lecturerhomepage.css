@@ -1,0 +1,261 @@
+/* --- การตั้งค่าพื้นฐาน (Reset & Fonts) --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Layout หลัก --- */
+.content-area {
+    background-color: #f1f4f9;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* ระยะห่างระหว่าง Section บน-ล่าง */
+    min-height: 100vh;
+}
+
+/* --- แก้ไข 1: เปลี่ยน top-section เป็นแนวตั้ง --- */
+.top-section {
+    display: flex;
+    flex-direction: column; /* สั่งให้เรียงจาก บนลงล่าง */
+    gap: 25px; /* ระยะห่างระหว่าง บัตรอาจารย์ กับ แถวกราฟ */
+}
+
+.card {
+    background: white;
+    width: fit-content;
+    min-width: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 2px solid #e0e6ed;
+}
+
+/* ส่วนหัว: แถบสีน้ำเงินเข้ม */
+.card h3:first-child {
+    background-color: #1a3a5a; /* สีน้ำเงินเข้มตามแบบ */
+    color: white;              /* ตัวหนังสือสีขาว */
+    margin: 0;
+    padding: 15px 25px;        /* เว้นระยะขอบด้านใน */
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid #1a3a5a; /* กันสีรั่ว (Optional) */
+}
+
+/* ส่วนเนื้อหาภายในบัตร */
+.card-content {
+    padding: 25px;          /* ช่องว่างภายในส่วนสีขาว */
+    display: flex;
+    align-items: center;    /* จัดรูปกับข้อความให้อยู่กึ่งกลางแนวนอน */
+    gap: 25px;              /* ระยะห่างระหว่างรูปกับข้อความ */
+}
+
+/* รูปโปรไฟล์ */
+.card img {
+    width: 110px;           /* ปรับขนาดให้พอดี (ประมาณตามรูป) */
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;     /* มุมรูปมนเล็กน้อย */
+}
+
+/* กล่องข้อความ (ชื่อ + ตำแหน่ง) */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;               /* ระยะห่างระหว่างบรรทัดชื่อกับตำแหน่ง */
+}
+
+/* ชื่อ (Dr. Lionel Messi) */
+.info h2 {
+    color: #1a3a5a;         /* สีน้ำเงินเข้ม */
+    font-size: 24px;        /* ตัวใหญ่ชัดเจน */
+    font-weight: 700;       /* ตัวหนา */
+    margin: 0;
+}
+
+/* ตำแหน่ง/ID (PSUIC Lecturer) */
+.info h3 {
+    color: #4a5568;         /* สีเทาเข้ม */
+    font-size: 16px;        /* ขนาดเล็กลงมา */
+    font-weight: 400;       /* ตัวธรรมดา ไม่หนา */
+    margin: 0;
+}
+
+
+/* --- แก้ไข 3: ส่วน Dashboard (กราฟ) --- */
+.lecturer-dashboard {
+    width: 100%; /* ให้กว้างเต็มพื้นที่ */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ให้กล่องกราฟ 2 อันเรียงคู่กันเหมือนเดิม แต่ขยายเต็มจอ */
+.summary-row {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+}
+
+.stat-card {
+    background: white;
+    flex: 1; /* แบ่งครึ่งกันคนละครึ่ง (50%-50%) */
+    padding: 25px 30px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.big-number {
+    font-size: 42px;
+    color: #1a3a5a;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.trend {
+    color: #718096;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Legend (วงกลมสี) */
+.legend {
+    margin-top: 15px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #2d3748;
+    font-weight: 600;
+}
+.dot { width: 10px; height: 10px; border-radius: 2px; }
+.dot.approved { background-color: #718096; }
+.dot.rejected { background-color: #cbd5e0; }
+
+/* รูปกราฟ */
+.stat-graph img { height: 80px; width: auto; }
+.pie-container { position: relative; }
+.percent-90 { position: absolute; bottom: 5px; left: 5px; color: white; font-size: 10px; }
+.percent-10 { position: absolute; top: 5px; right: 5px; color: #555; font-size: 10px; }
+
+/* --- 3. Lists Section (Students & Courses) --- */
+.number {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.number h2 {
+    color: #1a3a5a;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.stat-row:last-child { margin-bottom: 0; }
+
+.stat-row label {
+    width: 140px; /* ความกว้างช่องชื่อ */
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+.times {
+    width: 70px;
+    text-align: right;
+    color: #718096;
+    font-size: 14px;
+}
+
+/* --- 4. Animation Progress Bar --- */
+.progress-bar {
+    flex: 1; /* ยืดเต็มพื้นที่ */
+    height: 12px;
+    background-color: #edf2f7;
+    border-radius: 6px;
+    overflow: hidden; /* บังส่วนเกิน */
+}
+
+/* Keyframes สำหรับ Animation */
+@keyframes slideIn {
+    from { width: 0%; }
+    to { width: var(--target-width); }
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #718096; /* สีเทาเข้ม */
+    border-radius: 6px;
+    
+    /* Animation Setting */
+    width: 0%; /* เริ่มที่ 0 */
+    animation: slideIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+    /* cubic-bezier ช่วยให้ตอนจบช้าลงดูสมูทขึ้น */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* สร้าง Animation ชื่อว่า slideIn */
+@keyframes slideIn {
+    from { width: 0%; }
+    to { width: var(--target-width); } /* วิ่งไปหาความกว้างที่กำหนดไว้ใน HTML */
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #718096;
+    border-radius: 5px;
+    
+    /* เรียกใช้ Animation */
+    width: 0%; /* เริ่มต้นที่ 0 */
+    animation: slideIn 1.5s ease-out forwards; /* ใช้เวลา 1.5 วิ, forwards คือจบแล้วค้างไว้ที่ท่านั้น */
+}
+
+/* เพิ่มลูกเล่นให้ตัวเลขค่อยๆ ปรากฏ (Optional) */
+.times, .big-number {
+    animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

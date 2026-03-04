@@ -1,0 +1,77 @@
+/* --- Content Area --- */
+.content-area {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto; /* ให้ scroll ได้เฉพาะส่วนเนื้อหา */
+}
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* White Card (กล่องสีขาวกลางหน้า) */
+.white-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    min-height: 80%; /* ให้กล่องสูงสวยงาม */
+    position: relative;
+}
+
+.white-card h2 {
+    color: #4A5568;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/* --- Table Styling --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+
+.data-table th {
+    text-align: left;
+    color: #718096;
+    font-weight: 500;
+    padding: 15px 10px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.data-table td {
+    padding: 20px 10px;
+    color: #2D3748;
+    border-bottom: 1px solid #edf2f7;
+    font-size: 15px;
+}
+
+.data-table tr:hover {
+    background-color: #fafbfc; /* Highlight เมื่อเอาเมาส์ชี้ */
+}
+
+/* --- Button Next --- */
+.pagination-container {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.btn-next {
+    background-color: #1a365d; /* สีน้ำเงินเข้ม */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.btn-next:hover {
+    background-color: #2a4365;
+}

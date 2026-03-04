@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-bar{
+    height: 80px;
+    background-color: #193c6c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px
+}
+
+.logo img{
+    height: 45px;
+    width: auto;;
+}
+
+.change img {
+    height: 28px;
+    width: auto;
+    cursor: pointer;
+}
+
+
+
+
+.welcome-section {
+    text-align: center;
+    margin-top: 80px;
+    color: #173f73;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.welcome {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 56px;
+    font-weight: 700;
+    display: inline-block;      /* สำคัญมาก */
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+
+
+
+.login {
+    width: 420px;
+    height: 72px;
+    margin: 60px auto;
+    background-color: #193c6c;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 0 24px;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* hover effect */
+.login:hover {
+    background-color: #16345f;
+    transform: translateY(-2px);
+}
+
+/* โลโก้ฝั่งซ้าย */
+.logo-mini img {
+    height: 36px;
+    width: auto;
+}
+
+/* ข้อความ */
+.login-with p {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    align-items: center;
+}
+
+
+.Student {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;   /* บังคับกลาง */
+    z-index: -1;
+
+
+}
+
+
+.Student img {
+    max-width: 600px;       /* ปรับขนาดรูป */
+    width: 90%;
+    height: auto;
+}
+
+

@@ -1,0 +1,90 @@
+/* คอนเทนเนอร์หลักในส่วนเนื้อหา */
+.status-container {
+    background-color: white;
+    margin: 20px auto;
+    padding: 60px;
+    border-radius: 20px;
+    max-width: 900px;
+    min-height: 500px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* สไตล์กรณีไม่มีข้อมูล */
+.empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-state h1 {
+    color: #4a5568;
+    font-size: 48px;
+    font-weight: 400;
+}
+
+/* ส่วนหัวข้อหลัก */
+.main-title {
+    text-align: center;
+    font-size: 42px;
+    color: #4a5568;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* ข้อมูลนักศึกษา */
+.student-header h2 {
+    font-size: 28px;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.student-header p {
+    font-size: 22px;
+    color: #718096;
+    margin: 2px 0;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #cbd5e0;
+    margin: 30px 0;
+}
+
+/* รายละเอียดคำขอ */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.label {
+    font-size: 24px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.value {
+    font-size: 24px;
+    color: #718096;
+}
+
+/* สถานะตัวหนังสือสีเหลือง (Pending) */
+.status-pending {
+    color: #f6e05e; /* สีเหลืองทองตามรูป */
+    font-weight: 500;
+}
+
+/* ลิงก์ดาวน์โหลด */
+.download-link {
+    color: #718096;
+    text-decoration: none;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}

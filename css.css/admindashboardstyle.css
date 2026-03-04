@@ -1,0 +1,150 @@
+/* --- Global & Layout --- */
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-area {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* ระยะห่างระหว่าง Section */
+}
+
+/* --- Top Stats Cards --- */
+.stats-row {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+.stat-card {
+    background: white;
+    flex: 1; /* แบ่งครึ่งเท่ากัน */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-info h3 {
+    color: #5d6d7e;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+}
+
+.big-number {
+    font-size: 42px;
+    color: #1a3a5a; /* สีน้ำเงินเข้ม */
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.trend {
+    color: #718096;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Legend สำหรับกราฟวงกลม */
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 2px; }
+.dot.approved { background-color: #718096; }
+.dot.rejected { background-color: #cbd5e0; }
+
+/* จัดการรูปภาพกราฟ */
+.stat-chart img {
+    height: 90px;
+    width: auto;
+}
+
+.pie-chart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pie-label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+}
+.val-20 { top: 15px; right: 10px; color: #555; }
+.val-80 { bottom: 15px; left: 15px; color: white; }
+
+/* --- List Section (Students & Courses) --- */
+.list-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.list-section h2 {
+    color: #1a3a5a;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 25px 0;
+}
+
+/* แถวข้อมูล */
+.list-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+.list-row:last-child { margin-bottom: 0; }
+
+.label {
+    width: 150px; /* ความกว้างช่องชื่อ */
+    font-weight: 700;
+    color: #1a3a5a;
+    font-size: 15px;
+}
+
+.count {
+    width: 80px;
+    text-align: right;
+    color: #5d6d7e;
+    font-size: 14px;
+}
+
+/* Progress Bar */
+.progress-container {
+    flex: 1; /* ยืดเต็มพื้นที่ตรงกลาง */
+    background-color: #edf2f7; /* สีพื้นหลังแท่ง */
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #788fa5; /* สีแท่งกราฟ (เทาอมฟ้า) */
+    border-radius: 6px;
+    /* Animation */
+    animation: loadBar 1s ease-out forwards;
+}
+
+@keyframes loadBar {
+    from { width: 0; }
+}

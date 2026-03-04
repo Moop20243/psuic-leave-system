@@ -1,0 +1,165 @@
+/* --- Global Style --- */
+body {
+    background-color: #f1f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-area {
+    padding: 40px;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลางหน้าจอ */
+}
+
+/* --- Style สำหรับหน้า Course List (ตาราง) --- */
+.course-list-card {
+    background: white;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 40px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.card-header h1 {
+    font-size: 28px;
+    color: #5d6d7e;
+    font-weight: 400;
+    margin: 0;
+}
+
+.btn-add {
+    background-color: #1a3a5a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #2c5282;
+}
+
+/* ตาราง */
+.table-responsive { width: 100%; overflow-x: auto; }
+.course-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+.course-table th { text-align: left; color: #718096; padding: 15px 10px; border-bottom: 1px solid #e2e8f0; font-weight: 500; }
+.course-table td { padding: 20px 10px; color: #5d6d7e; border-bottom: 1px solid #e2e8f0; }
+.id-link { color: #5d6d7e; text-decoration: underline; }
+
+/* Pagination */
+.pagination { margin-top: auto; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+.page-num { display: flex; justify-content: center; align-items: center; width: 35px; height: 35px; border-radius: 4px; text-decoration: none; color: #718096; }
+.page-num.active { background-color: #1a3a5a; color: white; }
+.btn-next { background-color: #1a3a5a; color: white; padding: 8px 20px; border-radius: 4px; text-decoration: none; font-size: 14px; margin-left: 10px; }
+
+
+/* ----------------------------------------------- */
+/* --- Style สำหรับหน้า Add Course (ฟอร์ม) --- */
+/* ----------------------------------------------- */
+
+.add-card {
+    background: white;
+    width: 100%;
+    max-width: 900px; /* จำกัดความกว้างไม่ให้ยืดเกินไป */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 50px;
+    min-height: 80vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    color: #5d6d7e;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.add-course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* ระยะห่างระหว่างช่อง */
+    max-width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    color: #4a5568; /* สีหัวข้อเข้ม */
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #1a3a5a;
+}
+
+/* ปุ่ม Submit ตรงกลาง */
+.form-submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-submit {
+    background-color: #1a3a5a; /* สีน้ำเงินเข้ม */
+    color: white;
+    padding: 12px 60px; /* ปุ่มยาวหน่อย */
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2c5282;
+}
+
+/* ปุ่ม Back ล่างซ้าย */
+.back-container {
+    margin-top: auto; /* ดันลงไปล่างสุดของกล่อง */
+    padding-top: 30px;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #1a3a5a;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-back:hover {
+    background-color: #2c5282;
+}

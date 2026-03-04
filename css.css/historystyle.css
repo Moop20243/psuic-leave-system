@@ -1,0 +1,79 @@
+/* คอนเทนเนอร์หลัก */
+.history-container {
+    background-color: white;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 1000px;
+    min-height: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+body {
+    background-color: #f1f4f9; /* สีพื้นหลังเทาอ่อน */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-title {
+    text-align: center; /* สั่งให้ข้อความอยู่ตรงกลาง */
+    font-size: 42px;    /* ขนาดตัวอักษรตามที่คุณตั้งไว้ */
+    color: #4a5568;     /* สีเทาเข้มตามดีไซน์ */
+    margin-bottom: 40px; /* ระยะห่างด้านล่างก่อนถึงตาราง */
+    width: 100%;        /* มั่นใจว่าครอบคลุมพื้นที่ความกว้างทั้งหมด */
+}
+/* จัดการตาราง */
+.table-wrapper {
+    margin-top: 30px;
+    border: 1px solid #cbd5e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.history-table th {
+    background-color: #f8fafc;
+    color: #4a5568;
+    font-size: 20px;
+    padding: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #cbd5e0;
+}
+
+.history-table td {
+    padding: 20px;
+    font-size: 18px;
+    color: #4a5568;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: middle;
+}
+
+/* ตกแต่งปุ่มสถานะ */
+.status-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    text-align: center;
+    width: 140px;
+}
+
+.approved {
+    background-color: #8ce99a; /* สีเขียวตามรูป */
+    color: white;
+}
+
+.not-approved {
+    background-color: #ff8787; /* สีแดงตามรูป */
+    color: white;
+}
+
+/* Hover เอฟเฟกต์ให้แถวตารางดูมีมิติ */
+.history-table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Absence Type</title>
+    <link rel="stylesheet" href="../css.css/Menubarstyle.css">
+    <link rel="stylesheet" href="../css.css/addabsencetypestyle.css"> 
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
+        </div>
+        <div class="change">
+            <img src="../Photo/solar_global-outline.png" alt="Change Language">
+        </div>
+    </div>
+
+    <div class="main-container">  
+        <div class="menu-bar">
+            <a href="Dashboardpage.php" class="menu-item">
+                <img src="../Photo/dashboard.png" alt="">
+                <h3>Dashboard</h3>
+            </a>
+            <a href="Courselistpage.php" class="menu-item">
+                <img src="../Photo/courselist.png" alt="">
+                <h3>Course List</h3>
+            </a>
+            <a href="Absencetypepage.php" class="menu-item active">
+                <img src="../Photo/absencetype.png" alt="">
+                <h3>Absence Type</h3>
+            </a>
+            <a href="studentspage.php" class="menu-item">
+                <img src="../Photo/student.png" alt="">
+                <h3>Students</h3>
+            </a>
+            <a href="lecturerpage.php" class="menu-item">
+                <img src="../Photo/lecturer.png" alt="">
+                <h3>Lecturers</h3>
+            </a>
+            <a href="../logout.php" class="menu-item logout">
+                <img src="../Photo/logout.png" alt="">
+                <h3>Logout</h3>
+            </a>
+        </div>
+
+        <div class="content-area">
+            
+            <div class="add-card">
+                <h1 class="page-title">Add Absence Type</h1>
+                <h2 class="section-subtitle">Absence Type</h2>
+
+                <form class="add-form" action="insert_absence_type.php" method="POST">
+                    
+                    <div class="form-group">
+                        <input type="text" name="absence_type_name" placeholder="Enter Absence Type" class="form-input" required>
+                    </div>
+
+                    <div class="form-submit-container">
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+
+                </form>
+                
+                 <div class="back-container">
+                    <a href="Absencetypepage.php" class="btn-back">&lt; Back</a>
+                </div>
+
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
