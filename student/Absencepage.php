@@ -125,12 +125,17 @@ include '../connect.php';
 
                     <div class="form-group">
                         <label>Medical certificate <span class="optional">(if any)</span></label>
-                        <div class="file-upload-wrapper">
-                            <input type="file" name="medical_cert" id="medical_cert" accept="image/*,.pdf">
-                            <div class="file-upload-design">
-                                <img src="../Photo/upload.png" alt="" style="width: 40px; opacity: 0.5;">
-                                <p>Select file</p>
+                        <div class="file-upload-wrapper" style="position: relative;">
+                            
+                            <input type="file" name="medical_cert" id="medical_cert" accept="image/*,.pdf" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; z-index: 2;">
+                            
+                            <div class="file-upload-design" id="upload_design" style="transition: 0.3s; z-index: 1; position: relative;">
+                                <img src="../Photo/upload.png" alt="" id="upload_icon" style="width: 40px; opacity: 0.5;">
+                                <p id="file_name_display">Select file</p>
                             </div>
+
+                            <button type="button" id="remove_btn" style="display: none; position: absolute; top: 15px; right: 15px; z-index: 3; background: #ff4d4f; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: bold; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">✕</button>
+                            
                         </div>
                     </div>
 
@@ -149,5 +154,46 @@ include '../connect.php';
             </div>
         </div>
     </div> 
+
+    <script>
+        const fileInput = document.getElementById('medical_cert');
+        const uploadDesign = document.getElementById('upload_design');
+        const fileNameDisplay = document.getElementById('file_name_display');
+        const uploadIcon = document.getElementById('upload_icon');
+        const removeBtn = document.getElementById('remove_btn');
+
+        // เมื่อมีการเลือกไฟล์
+        fileInput.addEventListener('change', function(e) {
+            if(this.files && this.files.length > 0) {
+                const fileName = this.files[0].name;
+                
+                // เปลี่ยนข้อความเป็นชื่อไฟล์ และเปลี่ยนกล่องเป็นสีเขียว
+                fileNameDisplay.innerHTML = `<span style="color: #28a745; font-weight: bold; font-size: 16px;">✅ อัปโหลดสำเร็จ</span><br><span style="color: #555; font-size: 14px; word-break: break-all;">${fileName}</span>`;
+                uploadDesign.style.borderColor = '#28a745';
+                uploadDesign.style.backgroundColor = '#f0fff4';
+                
+                // ซ่อนไอคอนอัปโหลดเดิม และโชว์ปุ่มกากบาท
+                uploadIcon.style.display = 'none';
+                removeBtn.style.display = 'block';
+            }
+        });
+
+        // เมื่อกดปุ่มกากบาท (X)
+        removeBtn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            
+            // ล้างค่าไฟล์
+            fileInput.value = ''; 
+            
+            // คืนค่าหน้าตากลับเป็นเหมือนเดิม
+            fileNameDisplay.innerHTML = 'Select file';
+            uploadDesign.style.borderColor = ''; 
+            uploadDesign.style.backgroundColor = ''; 
+            
+            // โชว์ไอคอนอัปโหลดกลับมา และซ่อนปุ่มกากบาท
+            uploadIcon.style.display = 'inline-block';
+            removeBtn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
