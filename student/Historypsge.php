@@ -75,7 +75,7 @@ $result = mysqli_query($conn, $sql);
                 <h3>Advisor</h3>
             </a>
             
-            <a href="Index.html" class="menu-item logout">
+            <a href="index.html" class="menu-item logout">
                 <img src="../Photo/logout.png" alt="">
                 <h3>Logout</h3>
             </a>
@@ -138,4 +138,5 @@ $result = mysqli_query($conn, $sql);
         </div>
     </div> 
 </body>
+
 </html>
