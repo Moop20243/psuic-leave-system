@@ -62,7 +62,7 @@ include '../connect.php';
                 <h3>Advisor</h3>
             </a>
             
-            <a href="index.php" class="menu-item logout">
+            <a href="../logout.php" class="menu-item logout">
                 <img src="../Photo/logout.png" alt="">
                 <h3>Logout</h3>
             </a>
@@ -197,4 +197,5 @@ include '../connect.php';
     </script>
 </body>
 </html>
+
 
