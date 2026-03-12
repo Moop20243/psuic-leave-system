@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../connect.php';
 
-// ดึงรายชื่ออาจารย์ทั้งหมดมาใส่ใน Dropdown
+
 $lecturer_query = "SELECT username, fullname FROM users WHERE role = 'lecturer'";
 $lecturers = mysqli_query($conn, $lecturer_query);
 ?>
@@ -26,9 +26,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container">  
@@ -134,9 +132,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
                     </tbody>
                 </table>
 
-                <div class="pagination-container">
-                    <button class="btn-next">Next &gt;</button>
-                </div>
+               
             </div> 
         </div> 
     </div> 

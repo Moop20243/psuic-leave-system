@@ -22,9 +22,7 @@ include '../connect.php';
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container">  
@@ -107,9 +105,6 @@ include '../connect.php';
                     </table>
                 </div>
 
-                <div class="pagination">
-                    <a href="#" class="btn-next">Next ></a>
-                </div>
             </div>
         </div>
     </div> 

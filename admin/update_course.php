@@ -9,13 +9,13 @@ include '../connect.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // รับค่าจากฟอร์ม
+    
     $id = mysqli_real_escape_string($conn, $_POST['id']);
     $course_code = mysqli_real_escape_string($conn, $_POST['course_code']);
     $course_name = mysqli_real_escape_string($conn, $_POST['course_name']);
     $lecturer_name = mysqli_real_escape_string($conn, $_POST['lecturer_name']);
 
-    // คำสั่ง SQL Update
+    
     $sql = "UPDATE courses SET 
             course_code = '$course_code', 
             course_name = '$course_name', 

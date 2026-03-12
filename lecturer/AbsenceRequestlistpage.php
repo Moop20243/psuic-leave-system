@@ -15,7 +15,7 @@ include '../connect.php';
 
 $logged_in_user = $_SESSION['user_id'];
 
-//🔴 SQL ใหม่: เช็คทั้ง 2 เงื่อนไข (ถ้าเราเป็นที่ปรึกษา หรือ เราเป็นเจ้าของวิชา)
+
 $sql = "SELECT lr.* FROM leave_requests lr
         INNER JOIN users u ON lr.student_id = u.username
         WHERE (lr.status = 'Pending Advisor' AND u.advisor_id = '$logged_in_user')
@@ -39,7 +39,6 @@ $result = mysqli_query($conn, $sql);
 <body>
     <div class="top-bar">
         <div class="logo"><img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo"></div>
-        <div class="change"><img src="../Photo/solar_global-outline.png" alt="Change Language"></div>
     </div>
 
     <div class="main-container"> 

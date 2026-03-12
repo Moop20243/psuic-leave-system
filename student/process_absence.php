@@ -25,40 +25,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $status = "Pending Advisor";
 
+    
     $file_path = ""; 
-    // เช็คว่ามีการส่งไฟล์มาหรือไม่
+    
     if (isset($_FILES['medical_cert']) && $_FILES['medical_cert']['error'] !== 4) {
         
         if ($_FILES['medical_cert']['error'] == 0) {
             $target_dir = "../uploads/";
-            
-            // 🔴 แก้ไข: เปลี่ยนจาก 0777 เป็น 0755 เพื่อไม่ให้เซิร์ฟเวอร์มหาลัยบล็อก (Error 500)
             if (!file_exists($target_dir)) { 
-                @mkdir($target_dir, 0755, true); 
+                mkdir($target_dir, 0777, true); 
             }
             
             $extension = pathinfo($_FILES['medical_cert']['name'], PATHINFO_EXTENSION);
             $file_name = time() . "_" . $student_id . "." . $extension;
             $target_file = $target_dir . $file_name;
 
-            // 🔴 แก้ไข: ใช้ @ เพื่อซ่อน Error ร้ายแรง และใช้ Alert แจ้งผู้ใช้แทน
-            if (@move_uploaded_file($_FILES['medical_cert']['tmp_name'], $target_file)) {
+            
+            if (move_uploaded_file($_FILES['medical_cert']['tmp_name'], $target_file)) {
                 $file_path = $file_name;
             } else {
-                die("<script>
-                        alert('อัปโหลดรูปล้มเหลว! เซิร์ฟเวอร์ไม่อนุญาตให้บันทึกไฟล์ (Permission Denied) กรุณาแจ้ง Admin'); 
-                        window.history.back();
-                     </script>");
+                
+                die("<script>alert('ระบบไม่สามารถบันทึกไฟล์ได้: กรุณาแจ้ง Admin ให้ตั้งค่า Permission โฟลเดอร์ uploads เป็น 777'); window.history.back();</script>");
             }
         } else {
+            
             $err_code = $_FILES['medical_cert']['error'];
-            die("<script>
-                    alert('ไฟล์มีปัญหาหรือมีขนาดใหญ่เกินไป (Error Code: $err_code)'); 
-                    window.history.back();
-                 </script>");
+            die("<script>alert('อัปโหลดไฟล์ไม่สำเร็จ! (Error Code: $err_code) ถ้ารหัส 1 หรือ 2 แปลว่าไฟล์ขนาดใหญ่เกินไปครับ'); window.history.back();</script>");
         }
     }
 
+    
     $sql = "INSERT INTO leave_requests (student_id, leave_type, course, start_date, end_date, reason, contact_number, file_path, status) 
             VALUES ('$student_id', '$absence_type', '$course', '$start_date', '$end_date', '$reason', '$contact_number', '$file_path', '$status')";
 

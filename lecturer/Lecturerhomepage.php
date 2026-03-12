@@ -1,39 +1,63 @@
 <?php
 session_start();
 
-// 1. ถ้ายังไม่ล็อกอิน ให้กลับไปหน้า Login
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../student/index.php");
     exit();
 }
 
-// 2. ป้องกัน Session ตีกัน: ถ้าไม่ใช่ lecturer ให้เตะไป "ล้างค่า" ที่ logout
+
 if ($_SESSION['role'] !== 'lecturer') {
-    // 🔴 จุดนี้สำคัญ: ต้องเด้งไป logout.php เท่านั้น ห้ามเด้งไปหน้าอื่น ไม่งั้นลูปจะพัง
     header("Location: ../logout.php");
     exit();
 }
 
 include '../connect.php';
 
-// ดึงข้อมูลอาจารย์จาก Session
+
 $lecturer_id = $_SESSION['user_id'];
 $fullname = $_SESSION['fullname'];
 
-// --- เพิ่มการเช็ค Error ป้องกันฐานข้อมูลว่างเหมือนของ Admin ---
-// ดึงจำนวนคำขอทั้งหมด (ลบ WHERE advisor_id ออกไปก่อนเพื่อให้รันผ่าน)
-$sql_total = "SELECT COUNT(*) as total FROM leave_requests"; 
+
+$sql_prof = "SELECT profile_picture FROM users WHERE username = '$lecturer_id'";
+$res_prof = mysqli_query($conn, $sql_prof);
+$row_prof = mysqli_fetch_assoc($res_prof);
+$profile_pic = (!empty($row_prof['profile_picture'])) ? "../Photo/" . $row_prof['profile_picture'] : "../Photo/advisor.png";
+
+
+$sql_total = "SELECT COUNT(l.id) as total 
+              FROM leave_requests l 
+              JOIN users s ON l.student_id = s.username 
+              WHERE s.advisor_id = '$lecturer_id'"; 
 $total_result = mysqli_query($conn, $sql_total);
 $total_req = ($total_result) ? mysqli_fetch_assoc($total_result)['total'] : 0;
 
-// ดึงจำนวนที่อนุมัติ (นับจาก status อย่างเดียวไปก่อน)
-$sql_app = "SELECT COUNT(*) as total FROM leave_requests WHERE status='Approved'";
+$sql_app = "SELECT COUNT(l.id) as total 
+            FROM leave_requests l 
+            JOIN users s ON l.student_id = s.username 
+            WHERE s.advisor_id = '$lecturer_id' AND l.status='Approved'";
 $app_result = mysqli_query($conn, $sql_app);
 $app_req = ($app_result) ? mysqli_fetch_assoc($app_result)['total'] : 0;
 
-// ป้องกันหารด้วย 0
 $percent_app = ($total_req > 0) ? round(($app_req / $total_req) * 100) : 0;
 $percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0;
+
+
+$sql_top_students = "SELECT student_id, COUNT(*) as count 
+                     FROM leave_requests l
+                     JOIN users s ON l.student_id = s.username
+                     WHERE s.advisor_id = '$lecturer_id'
+                     GROUP BY student_id ORDER BY count DESC LIMIT 3";
+$res_students = mysqli_query($conn, $sql_top_students);
+
+
+$sql_top_courses = "SELECT course, COUNT(*) as count 
+                    FROM leave_requests l
+                    JOIN users s ON l.student_id = s.username
+                    WHERE s.advisor_id = '$lecturer_id'
+                    GROUP BY course ORDER BY count DESC LIMIT 3";
+$res_courses = mysqli_query($conn, $sql_top_courses);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,9 +73,7 @@ $percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0;
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container"> 
@@ -80,7 +102,7 @@ $percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0;
                 <div class="card">
                     <h3>Virtual Lecturer Card</h3>
                     <div class="card-content">
-                        <img src="../Photo/messi.jpg" alt="Lecturer Photo">
+                        <img src="<?php echo $profile_pic; ?>" alt="Lecturer Photo" style="object-fit: cover; width: 80px; height: 80px; border-radius: 10px;">
                         <div class="info">
                             <h2><?php echo $_SESSION['fullname']; ?></h2>
                             <h3>ID: <?php echo $_SESSION['user_id']; ?></h3>
@@ -129,26 +151,34 @@ $percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0;
             </div> 
 
             <div class="number">
-                <h2>Students with Most Leave of absence Requests</h2>
+                <h2>Students with Most Leave Requests</h2>
+                <?php while($s = mysqli_fetch_assoc($res_students)) { 
+                    $p_width = ($total_req > 0) ? ($s['count'] / $total_req * 100) : 0;
+                ?>
                 <div class="stat-row">
-                    <label>6410110xxx</label> 
+                    <label><?php echo $s['student_id']; ?></label> 
                     <div class="progress-bar">
-                        <div class="progress-fill" style="--target-width: 100%;"></div>
+                        <div class="progress-fill" style="--target-width: <?php echo $p_width; ?>%;"></div>
                     </div>
-                    <span class="times">10 times</span>
+                    <span class="times"><?php echo $s['count']; ?> times</span>
                 </div>
-                </div>
+                <?php } if(mysqli_num_rows($res_students) == 0) echo "<p>No data found</p>"; ?>
+            </div>
 
-            <div class="number">
-                <h2>Courses with Most Leave of absence Requests</h2>
+            <div class="number" style="margin-top: 20px;">
+                <h2>Courses with Most Leave Requests</h2>
+                <?php while($c = mysqli_fetch_assoc($res_courses)) { 
+                    $c_width = ($total_req > 0) ? ($c['count'] / $total_req * 100) : 0;
+                ?>
                 <div class="stat-row">
-                    <label>Course Name</label> 
+                    <label><?php echo $c['course']; ?></label> 
                     <div class="progress-bar">
-                        <div class="progress-fill" style="--target-width: 100%;"></div>
+                        <div class="progress-fill" style="--target-width: <?php echo $c_width; ?>%;"></div>
                     </div>
-                    <span class="times">12 times</span>
+                    <span class="times"><?php echo $c['count']; ?> times</span>
                 </div>
-                </div>
+                <?php } if(mysqli_num_rows($res_courses) == 0) echo "<p>No data found</p>"; ?>
+            </div>
 
         </div> 
     </div> 

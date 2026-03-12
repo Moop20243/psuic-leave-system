@@ -10,7 +10,7 @@ include '../connect.php';
 
 $student_id = $_SESSION['user_id'];
 
-// 🔴 แก้ไข SQL: เปลี่ยนจาก = 'Pending' เป็น LIKE 'Pending%' เพื่อให้ดึงทั้ง Pending Advisor และ Pending Lecturer
+
 $sql = "SELECT * FROM leave_requests WHERE student_id = '$student_id' AND status LIKE 'Pending%' ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -77,9 +77,7 @@ $result = mysqli_query($conn, $sql);
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container"> 
@@ -100,7 +98,7 @@ $result = mysqli_query($conn, $sql);
                 <img src="../Photo/history.png" alt="">
                 <h3>History</h3>
             </a>
-            <a href="Advisorpage.html" class="menu-item">
+            <a href="Advisorpage.php" class="menu-item">
                 <img src="../Photo/advisor.png" alt="">
                 <h3>Advisor</h3>
             </a>

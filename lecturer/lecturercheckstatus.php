@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../student/index.php");
     exit();
 }
-
 
 if ($_SESSION['role'] !== 'lecturer') {
     header("Location: ../logout.php");
@@ -15,12 +13,15 @@ if ($_SESSION['role'] !== 'lecturer') {
 
 include '../connect.php';
 
-
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
     
     
-    $sql = "SELECT * FROM leave_requests WHERE id = '$id'";
+    $sql = "SELECT l.*, u.fullname, c.course_name 
+            FROM leave_requests l 
+            LEFT JOIN users u ON l.student_id = u.username 
+            LEFT JOIN courses c ON l.course = c.course_code
+            WHERE l.id = '$id'";
     $result = mysqli_query($conn, $sql);
     
     if (!$result || mysqli_num_rows($result) == 0) {
@@ -31,7 +32,6 @@ if (isset($_GET['id'])) {
 } else {
     die("ไม่ได้ระบุ ID ใบลา (No ID specified)");
 }
-
 
 if (isset($_POST['update_status'])) {
     $new_status = $_POST['update_status']; 
@@ -58,7 +58,7 @@ if (isset($_POST['update_status'])) {
         $msg = "ปฏิเสธคำขอเรียบร้อยแล้ว";
     }
     
-    // ทำการรันคำสั่ง SQL
+    
     if (mysqli_query($conn, $update_sql)) {
         echo "<script>
                 alert('$msg');
@@ -119,9 +119,7 @@ if (isset($_POST['update_status'])) {
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container"> 
@@ -151,6 +149,7 @@ if (isset($_POST['update_status'])) {
 
                 <div class="student-info">
                     <h2>Student ID: <?php echo $row['student_id']; ?></h2>
+                    <h2>Name: <?php echo isset($row['fullname']) ? $row['fullname'] : 'Unknown'; ?></h2>
                     <p>International College</p>
                 </div>
 
@@ -175,7 +174,14 @@ if (isset($_POST['update_status'])) {
 
                 <div class="detail-row">
                     <span class="label">Course</span>
-                    <span class="value"><?php echo $row['course']; ?></span>
+                    <span class="value">
+                        <?php 
+                        echo $row['course']; 
+                        if (!empty($row['course_name'])) {
+                            echo " - " . $row['course_name'];
+                        }
+                        ?>
+                    </span>
                 </div>
 
                 <div class="detail-row">
@@ -215,10 +221,10 @@ if (isset($_POST['update_status'])) {
 
                 <form method="POST" class="action-buttons" onsubmit="return confirm('ยืนยันการตัดสินใจของคุณ?');">
                     <button type="submit" name="update_status" value="Approved" class="btn-action btn-approve">
-                        ✅ Approve
+                         Approve
                     </button>
                     <button type="submit" name="update_status" value="Not Approved" class="btn-action btn-reject">
-                        ❌ Reject
+                         Reject
                     </button>
                 </form>
 

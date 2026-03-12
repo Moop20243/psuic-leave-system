@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']); // รับค่า email
+    $email = mysqli_real_escape_string($conn, $_POST['email']); 
     $role = 'lecturer';
 
     $sql = "INSERT INTO users (username, fullname, password, email, role) 

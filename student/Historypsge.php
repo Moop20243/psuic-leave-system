@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// 1. เช็คว่าล็อกอินหรือยัง
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../student/index.php");
     exit();
 }
 
-// 2. ป้องกันอาจารย์หรือแอบเข้าหน้านักศึกษา
+
 if ($_SESSION['role'] !== 'student') {
     header("Location: ../logout.php");
     exit();
@@ -17,7 +17,7 @@ include '../connect.php';
 
 $student_id = $_SESSION['user_id'];
 
-// ดึงประวัติการลาทั้งหมดของนักศึกษาคนนี้ (โชว์ทุกสถานะทั้ง Pending และ Approved)
+
 $sql = "SELECT * FROM leave_requests WHERE student_id = '$student_id' ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -31,10 +31,9 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="../css.css/Menubarstyle.css">
     <link rel="stylesheet" href="../css.css/historystyle.css">
     <style>
-        /* เพิ่มสีให้สถานะ Pending (รออนุมัติ) หน่อยครับ เพราะใน CSS เดิมน่าจะยังไม่มี */
+        
         .status-btn.pending {
-            background-color: #f39c12; /* สีส้ม */
-            color: white;
+            background-color: #f39c12; 
         }
     </style>
 </head>
@@ -43,9 +42,7 @@ $result = mysqli_query($conn, $sql);
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container"> 
@@ -70,7 +67,7 @@ $result = mysqli_query($conn, $sql);
                 <h3>History</h3>
             </a>
             
-            <a href="Advisorpage.html" class="menu-item">
+            <a href="Advisorpage.php" class="menu-item">
                 <img src="../Photo/advisor.png" alt="">
                 <h3>Advisor</h3>
             </a>
@@ -98,17 +95,17 @@ $result = mysqli_query($conn, $sql);
                         </thead>
                         <tbody>
                             <?php
-                            // ถ้ามีข้อมูลใน Database
+                            
                             if (mysqli_num_rows($result) > 0) {
-                                // วนลูปดึงข้อมูลทีละแถวมาเก็บในตัวแปร $row
+                                
                                 while($row = mysqli_fetch_assoc($result)) {
                                     
-                                    // จัดการสีของปุ่มสถานะ
-                                    $status_class = 'pending'; // ค่าเริ่มต้นสีส้ม
+                                    
+                                    $status_class = 'pending'; 
                                     if(strtolower($row['status']) == 'approved') {
-                                        $status_class = 'approved'; // สีเขียว
+                                        $status_class = 'approved'; 
                                     } else if (strtolower($row['status']) == 'not approved') { // แก้คำผิดให้ตรงกับที่ database อาจจะเก็บ
-                                        $status_class = 'not-approved'; // สีแดง
+                                        $status_class = 'not-approved'; 
                                     }
                             ?>
                                     <tr>
@@ -125,9 +122,9 @@ $result = mysqli_query($conn, $sql);
                                         </td>
                                     </tr>
                             <?php 
-                                } // จบ Loop while
+                                } 
                             } else {
-                                // ถ้าไม่มีข้อมูลเลย
+                                
                                 echo "<tr><td colspan='5' style='text-align:center;'>No history found.</td></tr>";
                             }
                             ?>
@@ -138,6 +135,4 @@ $result = mysqli_query($conn, $sql);
         </div>
     </div> 
 </body>
-
 </html>
-

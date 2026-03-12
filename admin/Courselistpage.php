@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../connect.php';
 
-// ดึงรายชื่ออาจารย์ทั้งหมดเพื่อนำไปใส่ใน Dropdown ตัวเลือกคนสอน
+
 $lecturer_query = "SELECT fullname FROM users WHERE role = 'lecturer' ORDER BY fullname ASC";
 $lecturers = mysqli_query($conn, $lecturer_query);
 ?>
@@ -26,9 +26,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container">  
@@ -81,7 +79,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
                             <select name="lecturer_name" required style="width:100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
                                 <option value="">-- Select Lecturer --</option>
                                 <?php 
-                                // Reset pointer เพื่อให้วนลูปได้
+                               
                                 mysqli_data_seek($lecturers, 0);
                                 while($lec = mysqli_fetch_assoc($lecturers)): ?>
                                     <option value="<?php echo $lec['fullname']; ?>"><?php echo $lec['fullname']; ?></option>
@@ -105,7 +103,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
 
                         <tbody>
     <?php
-    // ดึงข้อมูลรายวิชา
+    
     $sql = "SELECT * FROM courses ORDER BY id ASC";
     $result = mysqli_query($conn, $sql);
 
@@ -113,7 +111,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
         while($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             
-            // แก้ไขส่วน ID ให้เป็นลิงก์ขีดเส้นใต้และขนาดปกติ
+            
             echo '<td>';
             echo '<a href="editcoursepage.php?id=' . $row['id'] . '" style="color: #003366; text-decoration: underline; font-size: 14px;">';
             echo str_pad($row['id'], 4, '0', STR_PAD_LEFT);
@@ -124,7 +122,7 @@ $lecturers = mysqli_query($conn, $lecturer_query);
             echo '<td>' . $row['course_name'] . '</td>';
             echo '<td>' . $row['lecturer_name'] . '</td>';
             
-            // ปุ่ม Delete
+            
             echo '<td>';
             echo '<a href="delete_course.php?id=' . $row['id'] . '" onclick="return confirm(\'ยืนยันการลบรายวิชานี้?\')" style="color: red; text-decoration: none; font-weight:bold;">Delete</a>';
             echo '</td>';
@@ -137,10 +135,6 @@ $lecturers = mysqli_query($conn, $lecturer_query);
     ?>
 </tbody>
                     </table>
-                </div>
-
-                <div class="pagination">
-                    <a href="#" class="btn-next">Next ></a>
                 </div>
 
             </div>

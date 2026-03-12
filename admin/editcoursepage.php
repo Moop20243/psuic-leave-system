@@ -8,22 +8,21 @@ if (!isset($_SESSION['user_id'])) {
 include '../connect.php';
 
 
-// ตรวจสอบว่ามี ID ส่งมาหรือไม่
+
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
     
-    // ดึงข้อมูลวิชานั้นๆ จากตาราง courses
+   
     $sql = "SELECT * FROM courses WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    
-    // ถ้าหาไม่เจอ ให้เด้งกลับไปหน้ารายการ
+   
     if (!$row) {
         echo "<script>alert('ไม่พบข้อมูลรายวิชา'); window.location='Courselistpage.php';</script>";
         exit;
     }
 } else {
-    // ถ้าไม่มี ID ส่งมาเลย ให้เด้งกลับ
+
     header("Location: Courselistpage.php");
     exit();
 }
@@ -43,9 +42,7 @@ if (isset($_GET['id'])) {
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container">  

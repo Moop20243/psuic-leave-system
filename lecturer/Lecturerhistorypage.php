@@ -42,7 +42,7 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="../css.css/historystyle.css">
     
     <style>
-        /* สไตล์ปุ่มสถานะ */
+        
         .status-btn {
             padding: 6px 12px;
             border-radius: 6px;
@@ -57,7 +57,7 @@ $result = mysqli_query($conn, $sql);
         .approved { background-color: #2dc550d0; }
         .not-approved { background-color: #e23030c9; }
         
-        /* ตารางเส้นเดียว */
+        
         .history-table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -76,12 +76,12 @@ $result = mysqli_query($conn, $sql);
             padding: 15px; 
             background: white; 
             color: #333;
-            /* สีเส้นคั่นบรรทัดจางๆ (#f5f5f5) */
+           
             border-bottom: 1px solid #f5f5f5; 
             vertical-align: middle;
         }
 
-        /* ลบเส้นบรรทัดสุดท้าย */
+        
         .history-table tr:last-child td {
             border-bottom: none;
         }
@@ -93,9 +93,7 @@ $result = mysqli_query($conn, $sql);
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container"> 
@@ -139,19 +137,19 @@ $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     
-                                    // ตัวแปรข้อมูล
+                                  
                                     $student_id = $row['student_id'];
                                     $course = $row['course'];
                                     $type = $row['leave_type'];
                                     $reason = $row['reason'];
                                     $status_db = $row['status'];
                                     
-                                    // จัดการวันที่
+                                    
                                     $s_date = date("d/m/Y", strtotime($row['start_date']));
                                     $e_date = date("d/m/Y", strtotime($row['end_date']));
                                     $date_show = $s_date . " - " . $e_date;
 
-                                    // จัดการสีปุ่ม
+                                   
                                     $status_class = 'pending';
                                     if (strtolower($status_db) == 'approved') {
                                         $status_class = 'approved';
@@ -159,7 +157,7 @@ $result = mysqli_query($conn, $sql);
                                         $status_class = 'not-approved';
                                     }
 
-                                    // แสดงผล
+                                   
                                     echo "<tr>";
                                     echo "<td style='font-weight:bold; color:#555;'>" . $student_id . "</td>";
                                     echo "<td>" . $course . "</td>";

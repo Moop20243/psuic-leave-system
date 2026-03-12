@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// 2. ป้องกัน Session ตีกัน
+
 if ($_SESSION['role'] !== 'admin') {
     header("Location: ../logout.php"); 
     exit();
@@ -14,22 +14,21 @@ if ($_SESSION['role'] !== 'admin') {
 
 include '../connect.php';
 
-// --- แก้ไข: เช็คก่อนว่ามีข้อมูลไหม เพื่อป้องกัน Error Division by zero ---
-// 1. ดึงจำนวนคำขอทั้งหมด
+
 $sql_total = "SELECT COUNT(*) as total FROM leave_requests";
 $result_total = mysqli_query($conn, $sql_total);
 $total_req = ($result_total) ? mysqli_fetch_assoc($result_total)['total'] : 0;
 
-// 2. ดึงจำนวนที่อนุมัติ (Approved)
+
 $sql_app = "SELECT COUNT(*) as total FROM leave_requests WHERE status='Approved'";
 $result_app = mysqli_query($conn, $sql_app);
 $app_req = ($result_app) ? mysqli_fetch_assoc($result_app)['total'] : 0;
 
-// 3. คำนวณเปอร์เซ็นต์ (Approved vs Rejected/Pending) ป้องกันหาร 0
-$percent_app = ($total_req > 0) ? round(($app_req / $total_req) * 100) : 0;
-$percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0; // ปรับให้เป็น 0 ถ้ายังไม่มีคำขอเลย
 
-// 4. ดึงรายชื่อนักศึกษาที่ลาบ่อยที่สุด 4 อันดับแรก
+$percent_app = ($total_req > 0) ? round(($app_req / $total_req) * 100) : 0;
+$percent_rej = ($total_req > 0) ? (100 - $percent_app) : 0; 
+
+
 $sql_top_students = "SELECT student_id, COUNT(*) as count 
                      FROM leave_requests 
                      GROUP BY student_id 
@@ -37,13 +36,13 @@ $sql_top_students = "SELECT student_id, COUNT(*) as count
                      LIMIT 4";
 $top_students_result = mysqli_query($conn, $sql_top_students);
 
-// หาจำนวนครั้งสูงสุดของนักศึกษาเพื่อคิดความกว้าง Progress Bar
+
 $sql_max_s = "SELECT COUNT(*) as max_c FROM leave_requests GROUP BY student_id ORDER BY max_c DESC LIMIT 1";
 $result_max_s = mysqli_query($conn, $sql_max_s);
 $max_student_leave = ($result_max_s && mysqli_num_rows($result_max_s) > 0) ? mysqli_fetch_assoc($result_max_s)['max_c'] : 1;
 
 
-// 5. ดึงรายชื่อวิชาที่มีการลาบ่อยที่สุด 4 อันดับแรก
+
 $sql_top_courses = "SELECT course, COUNT(*) as count 
                     FROM leave_requests 
                     GROUP BY course 
@@ -51,7 +50,7 @@ $sql_top_courses = "SELECT course, COUNT(*) as count
                     LIMIT 4";
 $top_courses_result = mysqli_query($conn, $sql_top_courses);
 
-// หาจำนวนครั้งสูงสุดของวิชาเพื่อคิดความกว้าง Progress Bar
+
 $sql_max_c = "SELECT COUNT(*) as max_c FROM leave_requests GROUP BY course ORDER BY max_c DESC LIMIT 1";
 $result_max_c = mysqli_query($conn, $sql_max_c);
 $max_course_leave = ($result_max_c && mysqli_num_rows($result_max_c) > 0) ? mysqli_fetch_assoc($result_max_c)['max_c'] : 1;
@@ -72,9 +71,7 @@ $max_course_leave = ($result_max_c && mysqli_num_rows($result_max_c) > 0) ? mysq
         <div class="logo">
             <img src="../Photo/PSUIC White Medium  2024 6.png" alt="PSUIC Logo">
         </div>
-        <div class="change">
-            <img src="../Photo/solar_global-outline.png" alt="Change Language">
-        </div>
+        
     </div>
 
     <div class="main-container">  
